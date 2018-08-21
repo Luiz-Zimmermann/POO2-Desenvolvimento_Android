@@ -5,13 +5,15 @@
 ## Comandos importantes para lembrar.
 
 ### Clonar repositorio.
+```
 git clone (endereço)
+```
 
 ### Para adicionar arquivos no stage.
 git add(nome do arquivo)
 
 ### Para enviar/commit o arquivo.
-git commit -m "frase desejada(opcinal)"
+git commit -m "frase desejada(opcional)"
 
 ### Para ver o log.
 git log
