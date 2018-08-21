@@ -9,33 +9,37 @@
 git clone (endereço)
 ```
 
-```bash
+
 ### Para adicionar arquivos no stage.
+```bash
 git add(nome do arquivo)
 ```
 
-```bash
 ### Para enviar/commit o arquivo.
+```bash
 git commit -m "frase desejada(opcional)"
 ```
 
-```bash
 ### Para ver o log.
+```bash
 git log
 ```
 
-```bash
+
 ### Para ver a situação do working dir.
+```bash
 git status
 ```
 
-```bash
+
 ### Para enviar as alteraçoes para o repositorio remoto.
+```bash
 git push
 ```
 
-```bash
+
 ## Importante quando estiver na UNIVALI.
+```bash
 export PAGER=
 ```
 
