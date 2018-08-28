@@ -9,20 +9,22 @@ package pkg01.geradorprova;
  *
  * @author 6530729
  */
-abstract class Questao {
+abstract class Questao{
     
-    private String pergunta;
+    private String[] pergunta;
     private double peso;
     
-    public Questao(){
+    public Questao( ){
+        
+         
         
     }
 
-    public String getPergunta() {
+    public String[] getPergunta() {
         return pergunta;
     }
 
-    public void setPergunta(String pergunta) {
+    public void setPergunta(String[] pergunta) {
         this.pergunta = pergunta;
     }
 

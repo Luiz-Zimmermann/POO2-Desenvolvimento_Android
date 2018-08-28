@@ -14,9 +14,16 @@ final class Discursiva extends Questao {
     private String criterioCorrecao;
     
     public Discursiva(){
+       
         
     }
-
+    
+    public questoesDiscursivas(int x){
+        
+        Questao num = new Questao(x);
+        
+    }
+    
     public String getCriterioCorrecao() {
         return criterioCorrecao;
     }

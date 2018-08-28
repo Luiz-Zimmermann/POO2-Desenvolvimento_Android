@@ -37,6 +37,11 @@ git status
 git push
 ```
 
+### Para baixar as alteraçoes para o repositorio local.
+```bash
+git pull
+```
+
 
 ## Importante quando estiver na UNIVALI.
 ```bash

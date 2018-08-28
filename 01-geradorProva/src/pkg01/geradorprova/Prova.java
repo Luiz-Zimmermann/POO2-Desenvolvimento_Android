@@ -12,15 +12,20 @@ package pkg01.geradorprova;
 public class Prova {
 
     private String nomeDisciplina;
-    private int peso;
+    private double peso;
     private String local;
     private String data;
+    private Discursiva;
+    private string Objetiva;
+    
+    
+    
 
     //CONSTRUTOR
-    public Prova(String nome) {
+    public Prova(String nome, double nota) {
 
-        this.nomeDisciplina = nome;
-        this.peso = 10;
+        this.setNomeDisciplina(nome);
+        this.setPeso(nota);
 
     }
 
@@ -29,10 +34,12 @@ public class Prova {
         String retorno = "";
         retorno = retorno + "Nome: " + this.getNomeDisciplina() + "\n";
         retorno = retorno + "Local: " + this.getLocal() + "\n";
-        retorno = retorno + "Data: " + this.getLocal() + "\n";
+        retorno = retorno + "Data: " + this.getData() + "\n";
         retorno += retorno + "Peso: " + this.getPeso() + "\n";
         return retorno;
     }
+    
+    
 
     //GET AND SETTERS
     public String getNomeDisciplina() {
@@ -43,13 +50,15 @@ public class Prova {
         this.nomeDisciplina = nomeDisciplina;
     }
 
-    public int getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
+
+    
 
     public String getLocal() {
         return local;
@@ -66,5 +75,7 @@ public class Prova {
     public void setData(String data) {
         this.data = data;
     }
+    
+    
 
 }

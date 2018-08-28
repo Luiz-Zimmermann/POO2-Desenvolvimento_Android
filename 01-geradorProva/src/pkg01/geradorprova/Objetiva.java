@@ -12,7 +12,7 @@ package pkg01.geradorprova;
 final class Objetiva extends Questao {
     
     private String[] opcoes;
-    private int resposta;
+    private int respostaCorreta;
     
     //CONSTRUTOR
     public Objetiva(){
@@ -31,13 +31,15 @@ final class Objetiva extends Questao {
         this.opcoes = opcoes;
     }
 
-    public int getResposta() {
-        return resposta;
+    public int getRespostaCorreta() {
+        return respostaCorreta;
     }
 
-    public void setResposta(int resposta) {
-        this.resposta = resposta;
+    public void setRespostaCorreta(int respostaCorreta) {
+        this.respostaCorreta = respostaCorreta;
     }
+
+    
     
     
     
