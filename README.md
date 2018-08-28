@@ -43,6 +43,11 @@ git push
 export PAGER=
 ```
 
+## Copiar uma linha .
+```bash
+ctrl shift baixo
+```
+
 
 
 
