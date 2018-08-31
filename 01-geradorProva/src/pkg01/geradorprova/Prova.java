@@ -11,54 +11,74 @@ package pkg01.geradorprova;
  */
 public class Prova {
 
-    private String nomeDisciplina;
-    private double peso;
+    //ATRIBUTOS
+    private String nomeDaDisciplina;
     private String local;
     private String data;
-    private Discursiva;
-    private string Objetiva;
-    
-    
-    
+    private Discursiva[] questoesDiscursivas;
+    private Objetiva[] questoesObjetivas;
+    private int peso;
 
     //CONSTRUTOR
-    public Prova(String nome, double nota) {
-
-        this.setNomeDisciplina(nome);
-        this.setPeso(nota);
+    public Prova() {
 
     }
 
     //METODOS
     public String obtemDetalhes() {
+
+        String retorno = "\n";
+
+        retorno += "Nome da disciplina: " + this.getNomeDaDisciplina() + "\n";
+        retorno += "Local da prova: " + this.getLocal() + "\n";
+        retorno += "Data da prova: " + this.getData() + "\n";
+        retorno += "Peso da prova: " + this.getPeso() + "\n";
+
+        return retorno;
+
+    }
+
+    public String obtemProvaImpressao() {
+
         String retorno = "";
-        retorno = retorno + "Nome: " + this.getNomeDisciplina() + "\n";
-        retorno = retorno + "Local: " + this.getLocal() + "\n";
-        retorno = retorno + "Data: " + this.getData() + "\n";
-        retorno += retorno + "Peso: " + this.getPeso() + "\n";
+        //QUESTÕES DISCURSIVAS
+
+        retorno += "Questões Discursivas. \n";
+        for (int i = 0; i < this.questoesDiscursivas.length; i++) {
+
+            retorno += (i + 1) + "-" + this.questoesDiscursivas[i].getPergunta() + " [" + this.questoesDiscursivas[i].getPeso() + "]" + "\n\n";
+            retorno += "Critério: " + this.questoesDiscursivas[i].getCriteriosCorrecao() + "\n\n";
+
+        }
+
+        retorno += "\n";
+
+        //QUESTÕES OBJETIVAS
+        retorno += "Questões Objetivas. \n";
+        for (int i = 0; i < this.questoesObjetivas.length; i++) {
+
+            retorno += (i + 1) + "-" + this.questoesObjetivas[i].getPergunta() + " " + "[" + this.questoesObjetivas[i].getPeso() + "]" + "\n";
+
+            String[] op = this.questoesObjetivas[i].getOpcoes();
+            for (int j = 0; j < 5; j++) {
+                retorno += " (" + (j + 1) + ") " + op[j] + "\n";
+            }
+            retorno += "R: " + this.questoesObjetivas[i].getRespostaCorreta() + "\n\n";
+        }
+
+        retorno += "\n\n";
+
         return retorno;
     }
-    
-    
 
-    //GET AND SETTERS
-    public String getNomeDisciplina() {
-        return nomeDisciplina;
+    //GET and SETTERS
+    public String getNomeDaDisciplina() {
+        return nomeDaDisciplina;
     }
 
-    public void setNomeDisciplina(String nomeDisciplina) {
-        this.nomeDisciplina = nomeDisciplina;
+    public void setNomeDaDisciplina(String nomeDaDisciplina) {
+        this.nomeDaDisciplina = nomeDaDisciplina;
     }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    
 
     public String getLocal() {
         return local;
@@ -75,7 +95,29 @@ public class Prova {
     public void setData(String data) {
         this.data = data;
     }
-    
-    
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public Discursiva[] getQuestoesDiscursivas() {
+        return questoesDiscursivas;
+    }
+
+    public void setQuestoesDiscursivas(Discursiva[] questoesDiscursivas) {
+        this.questoesDiscursivas = questoesDiscursivas;
+    }
+
+    public Objetiva[] getQuestoesObjetivas() {
+        return questoesObjetivas;
+    }
+
+    public void setQuestoesObjetivas(Objetiva[] questoesObjetivas) {
+        this.questoesObjetivas = questoesObjetivas;
+    }
 
 }

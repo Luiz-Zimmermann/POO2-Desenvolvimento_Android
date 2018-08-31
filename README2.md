@@ -8,3 +8,8 @@
 ```bash
 ctrl shift baixo
 ```
+
+## Fazer a dentação.
+```bash
+alt shift F
+```

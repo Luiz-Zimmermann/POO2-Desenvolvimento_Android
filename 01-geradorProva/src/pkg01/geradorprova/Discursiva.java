@@ -11,26 +11,16 @@ package pkg01.geradorprova;
  */
 final class Discursiva extends Questao {
     
-    private String criterioCorrecao;
-    
-    public Discursiva(){
-       
-        
-    }
-    
-    public questoesDiscursivas(int x){
-        
-        Questao num = new Questao(x);
-        
-    }
-    
-    public String getCriterioCorrecao() {
-        return criterioCorrecao;
+    //ATRIBUTOS
+    private String criteriosCorrecao;
+
+    //GET and SET
+    public String getCriteriosCorrecao() {
+        return criteriosCorrecao;
     }
 
-    public void setCriterioCorrecao(String criterioCorrecao) {
-        this.criterioCorrecao = criterioCorrecao;
+    public void setCriteriosCorrecao(String criteriosCorrecao) {
+        this.criteriosCorrecao = criteriosCorrecao;
     }
-    
 
 }

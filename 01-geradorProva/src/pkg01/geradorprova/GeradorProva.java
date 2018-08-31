@@ -1,53 +1,163 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pkg01.geradorprova;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /**
  *
- * @author 6530729
+ * @author 6530729 = Luiz Zimmermann
  */
+
+
 public class GeradorProva {
 
-    public static void main(String[] args) {
+    //FUNÇÃO PARA OBTER OS DADOS DA PROVA
+    public static void obtemInfo(Prova x) {
 
-        String materia = JOptionPane.showInputDialog("Informe a materia.");
+        Scanner scan = new Scanner(System.in);
 
-        double nota = Double.parseDouble(JOptionPane.showInputDialog("Informe a Nota."));
+        String frase;
+        int num;
 
-        Prova x = new Prova(materia, nota);
+        System.out.println("Por favor, informe o nome da disciplina: ");
+        frase = scan.nextLine();
+        x.setNomeDaDisciplina(frase);
 
-        int numeroQuestoes = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de questoes Discursivas."));
+        System.out.println("Por favor, informe o local da prova: ");
+        frase = scan.nextLine();
+        x.setLocal(frase);
 
-        String dados = JOptionPane.showInputDialog("Informe a materia.");
+        System.out.println("Por favor, informe a data em que a prova ira ser realizada: ");
+        frase = scan.nextLine();
+        x.setData(frase);
+
+        System.out.println("Por favor, informe o peso da nota da prova: ");
+        num = scan.nextInt();
+        x.setPeso(num);
+
+        scan.nextLine();
+        System.out.println("");
+
+    }
+
+    //FUNÇÃO PARA OBTER OS DADOS DAS QUESTÕES DISCURSIVAS
+    public static Discursiva[] obtemProvaD(Prova x) {
+
+        Scanner scan = new Scanner(System.in);
+
+        int num;
+        double num2;
+        String frase;
+
+        System.out.println("Por favor, informe o numero de perguntas discursivas: ");
+        num = scan.nextInt();
+        Discursiva[] vet = new Discursiva[num];
         
-        for (int i = 0; i < numeroQuestoes; i++) {
+        scan.nextLine();
+        
+        if (num >= 1) {
+            System.out.println("Por favor, escreva as perguntas abaixo. ");
+        } else {
+            System.out.println("Nenhuma questao discursiva.\n");
+        }
+        for (int i = 0; i < vet.length; i++) {
 
-            //opcao=JOptionPane.showInputDialog("Descreva a pergunta.");
+            vet[i] = new Discursiva();
+            //INFORMA A QUESTAO
+            System.out.println("Pergunta numero " + (i + 1) + ": ");
+            frase = scan.nextLine();
+            vet[i].setPergunta(frase);
+            System.out.println("");
+            //PESO DA QUESTAO
+            System.out.println("Informe o peso da questão: ");
+            /*while(!scan.hasNextDouble()){//verificação do peso
+                System.out.println("Valor incorreto, por favor, insira um valor valido.");
+                scan.nextDouble();
+            }*/
+            num2 = scan.nextDouble();
+            vet[i].setPeso(num2);
+            scan.nextLine();
+            System.out.println("");
+            //CRITERIOS DA QUESTAO
+            System.out.println("Informe o critério de avaliação da questão");
+            frase = scan.nextLine();
+            vet[i].setCriteriosCorrecao(frase);
+            System.out.println("\n");
+
         }
 
-        //Objetiva a= new Objetiva();
-        /*a.setPergunta("Oque e a vida?");
-        a.setPeso(1000);
-        String[] opcoes=new String[5];
-        opcoes[0]="Eu n sei";
-        opcoes[1]="sla po";
-        opcoes[2]="Eu qro dormir po";
-        opcoes[3]="Ninguem sabe";
-        opcoes[4]="So Deus sabe";
+        //RETORNA O VETOR COM TODAS AS INFORMAÇOES SOBRE AS QUESTOES DISCURSIVAS
+        return vet;
+    }
+
+    //FUNÇÃO PARA OBTER OS DADOS DAS QUESTÕES OBJETIVAS
+    public static Objetiva[] obtemProvaO(Prova x) {
+
+        Scanner scan = new Scanner(System.in);
+
+        int num;
+        double num2;
+        String frase;
+
+        System.out.println("Por favor, informe o numero de perguntas objetivas: ");
+        num = scan.nextInt();
+        Objetiva[] vet = new Objetiva[num];
+        scan.nextLine();
         
-        a.setOpcoes(opcoes);
-        a.setRespostaCorreta(4);
+        if(num>=1){
+            System.out.println("Por favor, escreva as perguntas abaixo. ");
+        }else{
+            System.out.println("Nenhuma quetao objetiva.\n");
+        }
         
-        Discursiva o= new Discursiva();
-        o.setPergunta("Nome da disciplina: ");
-        o.setCriterioCorrecao("N tem");
-        o.setPeso(2);
-         */
+
+        for (int i = 0; i < vet.length; i++) {
+            //ALOCA UM ESPAÇO NA MEMORIA DO TIPO OBJETIVA PARA CADA POSIÇÃO DO VETOR
+            vet[i] = new Objetiva();
+            //QUESTÕES
+            System.out.println("Pergunta numero " + (i + 1) + ": ");
+            frase = scan.nextLine();
+            vet[i].setPergunta(frase);
+            //OPÇÕES
+            System.out.println("Informe as 5 opções de resposta para a questão");
+            String[] vetAux = new String[5];
+            for (int j = 0; j < vetAux.length; j++) {
+                System.out.println("Opção " + (j + 1) + ": ");
+                frase = scan.nextLine();
+                vetAux[j] = frase;
+            }
+            vet[i].setOpcoes(vetAux);
+            //RESPOSTAS
+            System.out.println("Informe o numero da alternativa correta: ");
+            num = scan.nextInt();
+            vet[i].setRespostaCorreta(num);
+
+            scan.nextLine();
+
+            //PESOS
+            System.out.println("Informe o peso da questão: ");
+            num2 = scan.nextDouble();
+            vet[i].setPeso(num2);
+
+            scan.nextLine();
+
+        }
+
+        return vet;
+    }
+
+    //FUNÇÃO MAIN DO PROGRAMA
+    public static void main(String[] args) {
+
+        Prova x = new Prova();
+
+        obtemInfo(x);
+        x.setQuestoesDiscursivas(obtemProvaD(x));
+        x.setQuestoesObjetivas(obtemProvaO(x));
+
+        System.out.println(x.obtemDetalhes());
+        System.out.println(x.obtemProvaImpressao());
+
     }
 
 }
