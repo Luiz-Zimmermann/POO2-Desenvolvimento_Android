@@ -82,9 +82,9 @@ public class GeradorProva {
             num2 = scan.nextDouble();
             vet[i].setPeso(num2);
             scan.nextLine();
-            System.out.println("");
+            
             //CRITERIOS DA QUESTAO
-            System.out.println("Informe o critério de avaliação da questão");
+            System.out.println("\nInforme o critério de avaliação da questão");
             frase = scan.nextLine();
             vet[i].setCriteriosCorrecao(frase);
             System.out.println("\n");
@@ -175,7 +175,7 @@ public class GeradorProva {
         x.setQuestoesDiscursivas(obtemProvaD(x));
         x.setQuestoesObjetivas(obtemProvaO(x));
 
-        System.out.println(x.obtemDetalhes());
+        //System.out.println(x.obtemDetalhes());
         System.out.println(x.obtemProvaImpressao());
 
     }

@@ -10,7 +10,7 @@ package pkg01.geradorprova;
  * @author 6530729
  */
 final class Objetiva extends Questao {
-    
+
     //ATRIBUTOS
     private String[] opcoes;
     private int respostaCorreta;
@@ -20,6 +20,25 @@ final class Objetiva extends Questao {
 
         this.opcoes = new String[5];
 
+    }
+
+    @Override
+    public String retornaQuestao() {
+
+        String retorno = "";
+
+        //QUESTÕES OBJETIVAS
+        retorno += "Questões Objetivas. \n";
+
+        retorno +=  this.getPergunta() + " " + "[" + this.getPeso() + "]" + "\n";
+
+        String[] op = this.getOpcoes();
+        for (int j = 0; j < 5; j++) {
+            retorno += " (" + (j + 1) + ") " + op[j] + "\n";
+        }
+        retorno += "R: " + this.getRespostaCorreta() + "\n\n";
+
+        return retorno;
     }
 
     //GET and SETTERS
@@ -38,5 +57,7 @@ final class Objetiva extends Questao {
     public void setRespostaCorreta(int respostaCorreta) {
         this.respostaCorreta = respostaCorreta;
     }
+
+    
 
 }
