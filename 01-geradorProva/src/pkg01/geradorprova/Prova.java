@@ -27,12 +27,12 @@ public class Prova {
     //METODOS
     public String obtemDetalhes() {
 
-        String retorno = "\n";
+        String retorno = "------------------------------------------\n\n";
 
         retorno += "Nome da disciplina: " + this.getNomeDaDisciplina() + "\n";
         retorno += "Local da prova: " + this.getLocal() + "\n";
         retorno += "Data da prova: " + this.getData() + "\n";
-        retorno += "Peso da prova: " + this.getPeso() + "\n";
+        retorno += "Peso da prova: " + this.getPeso();
 
         return retorno;
 
@@ -40,30 +40,55 @@ public class Prova {
 
     public String obtemProvaImpressao() {
 
-        String retorno = "";
+        String retorno = "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n";
         //QUESTÕES DISCURSIVAS
+        boolean empty = true;
 
-        retorno += "Questões Discursivas. \n";
-        for (int i = 0; i < this.questoesDiscursivas.length; i++) {
-
-            retorno += (i + 1) + "-" + this.questoesDiscursivas[i].getPergunta() + " [" + this.questoesDiscursivas[i].getPeso() + "]" + "\n\n";
-            retorno += "Critério: " + this.questoesDiscursivas[i].getCriteriosCorrecao() + "\n\n";
-
+        for (Discursiva x : questoesDiscursivas) {
+            if (x != null) {
+                empty = false;
+                break;
+            }
         }
 
-        retorno += "\n";
+        if (empty == false) {
+
+            retorno += "Questões Discursivas. \n";
+            for (int i = 0; i < this.questoesDiscursivas.length; i++) {
+
+                retorno += (i + 1) + "-" + this.questoesDiscursivas[i].getPergunta() + " [" + this.questoesDiscursivas[i].getPeso() + "]" + "\n\n";
+                retorno += "Critério: " + this.questoesDiscursivas[i].getCriteriosCorrecao() + "\n\n";
+
+            }
+        } else {
+            retorno += "Nao ha questoes discursivas.\n";
+        }
+
+        retorno += "___________________________\n\n";
 
         //QUESTÕES OBJETIVAS
-        retorno += "Questões Objetivas. \n";
-        for (int i = 0; i < this.questoesObjetivas.length; i++) {
-
-            retorno += (i + 1) + "-" + this.questoesObjetivas[i].getPergunta() + " " + "[" + this.questoesObjetivas[i].getPeso() + "]" + "\n";
-
-            String[] op = this.questoesObjetivas[i].getOpcoes();
-            for (int j = 0; j < 5; j++) {
-                retorno += " (" + (j + 1) + ") " + op[j] + "\n";
+        for (Objetiva x : questoesObjetivas) {
+            if (x != null) {
+                empty = false;
+                break;
             }
-            retorno += "R: " + this.questoesObjetivas[i].getRespostaCorreta() + "\n\n";
+        }
+
+        if (empty == false) {
+
+            retorno += "Questões Objetivas. \n";
+            for (int i = 0; i < this.questoesObjetivas.length; i++) {
+
+                retorno += (i + 1) + "-" + this.questoesObjetivas[i].getPergunta() + " " + "[" + this.questoesObjetivas[i].getPeso() + "]" + "\n";
+
+                String[] op = this.questoesObjetivas[i].getOpcoes();
+                for (int j = 0; j < 5; j++) {
+                    retorno += " (" + (j + 1) + ") " + op[j] + "\n";
+                }
+                retorno += "R: " + this.questoesObjetivas[i].getRespostaCorreta() + "\n\n";
+            }
+        } else {
+            retorno += "Nao ha questoes objetivas.\n";
         }
 
         retorno += "\n\n";

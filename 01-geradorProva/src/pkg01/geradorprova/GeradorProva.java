@@ -1,4 +1,3 @@
-
 package pkg01.geradorprova;
 
 import java.util.Scanner;
@@ -7,8 +6,6 @@ import java.util.Scanner;
  *
  * @author 6530729 = Luiz Zimmermann
  */
-
-
 public class GeradorProva {
 
     //FUNÇÃO PARA OBTER OS DADOS DA PROVA
@@ -17,7 +14,6 @@ public class GeradorProva {
         Scanner scan = new Scanner(System.in);
 
         String frase;
-        int num;
 
         System.out.println("Por favor, informe o nome da disciplina: ");
         frase = scan.nextLine();
@@ -32,8 +28,11 @@ public class GeradorProva {
         x.setData(frase);
 
         System.out.println("Por favor, informe o peso da nota da prova: ");
-        num = scan.nextInt();
-        x.setPeso(num);
+        while (!scan.hasNextInt()) {
+            System.out.println("Valor incorreto, por favor insira um valor valido: ");
+            scan.next();
+        }
+        x.setPeso(scan.nextInt());
 
         scan.nextLine();
         System.out.println("");
@@ -50,11 +49,17 @@ public class GeradorProva {
         String frase;
 
         System.out.println("Por favor, informe o numero de perguntas discursivas: ");
+
+        while (!scan.hasNextInt()) {
+            System.out.println("Valor incorreto, por favor insira um valor valido: ");
+            scan.next();
+        }
+
         num = scan.nextInt();
         Discursiva[] vet = new Discursiva[num];
-        
+
         scan.nextLine();
-        
+
         if (num >= 1) {
             System.out.println("Por favor, escreva as perguntas abaixo. ");
         } else {
@@ -70,10 +75,10 @@ public class GeradorProva {
             System.out.println("");
             //PESO DA QUESTAO
             System.out.println("Informe o peso da questão: ");
-            /*while(!scan.hasNextDouble()){//verificação do peso
+            while (!scan.hasNextDouble()) {//verificação do peso
                 System.out.println("Valor incorreto, por favor, insira um valor valido.");
-                scan.nextDouble();
-            }*/
+                scan.next();
+            }
             num2 = scan.nextDouble();
             vet[i].setPeso(num2);
             scan.nextLine();
@@ -100,16 +105,21 @@ public class GeradorProva {
         String frase;
 
         System.out.println("Por favor, informe o numero de perguntas objetivas: ");
+
+        while (!scan.hasNextInt()) {
+            System.out.println("Valor incorreto, por favor insira um valor valido: ");
+            scan.next();
+        }
+
         num = scan.nextInt();
         Objetiva[] vet = new Objetiva[num];
         scan.nextLine();
-        
-        if(num>=1){
+
+        if (num >= 1) {
             System.out.println("Por favor, escreva as perguntas abaixo. ");
-        }else{
+        } else {
             System.out.println("Nenhuma quetao objetiva.\n");
         }
-        
 
         for (int i = 0; i < vet.length; i++) {
             //ALOCA UM ESPAÇO NA MEMORIA DO TIPO OBJETIVA PARA CADA POSIÇÃO DO VETOR
@@ -129,6 +139,11 @@ public class GeradorProva {
             vet[i].setOpcoes(vetAux);
             //RESPOSTAS
             System.out.println("Informe o numero da alternativa correta: ");
+
+            while (!scan.hasNextInt()) {
+                System.out.println("Valor incorreto, por favor insira um valor valido: ");
+                scan.next();
+            }
             num = scan.nextInt();
             vet[i].setRespostaCorreta(num);
 
@@ -136,6 +151,11 @@ public class GeradorProva {
 
             //PESOS
             System.out.println("Informe o peso da questão: ");
+
+            while (!scan.hasNextDouble()) {
+                System.out.println("Valor incorreto, por favor insira um valor valido: ");
+                scan.next();
+            }
             num2 = scan.nextDouble();
             vet[i].setPeso(num2);
 
