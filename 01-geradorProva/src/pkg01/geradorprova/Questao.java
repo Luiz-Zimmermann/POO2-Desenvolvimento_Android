@@ -11,15 +11,19 @@ package pkg01.geradorprova;
  */
 abstract class Questao{
     
-    //ATRIBUTOS
+   //ATRIBUTOS
     private String pergunta;
-    private double peso;
+    private double peso; 
 
+    
+    //Construtor
+    public Questao(){
+
+    }
+    
     //METODOS   
     abstract String retornaQuestao();
-    
-    
-    //GET and SETTERS
+
     public String getPergunta() {
         return pergunta;
     }
@@ -35,5 +39,5 @@ abstract class Questao{
     public void setPeso(double peso) {
         this.peso = peso;
     }
-
+ 
 }

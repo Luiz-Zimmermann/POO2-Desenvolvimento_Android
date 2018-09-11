@@ -11,7 +11,7 @@ package pkg01.geradorprova;
  */
 final class Discursiva extends Questao {
 
-    //ATRIBUTOS
+     //ATRIBUTOS
     private String criteriosCorrecao;
 
     //METODOS
@@ -20,18 +20,17 @@ final class Discursiva extends Questao {
         String retorno = "";
         //QUESTÕES DISCURSIVAS
 
-            retorno += "Questões Discursivas. \n";
+            //retorno += "Questões Discursivas. \n";
 
-            retorno +=  this.getPergunta() + " [" + this.getPeso() + "]" + "\n";
-            retorno += "______________________________________________\n";
-            retorno += "______________________________________________\n";
-            retorno += "Critério: " + this.getCriteriosCorrecao() + "\n\n";
+            retorno +=  this.getPergunta() + " [" + this.getPeso() + "]" + "\r\n";
+            retorno += "______________________________________________\r\n";
+            retorno += "______________________________________________\r\n";
+            retorno += "Critério: " + this.getCriteriosCorrecao() + "\r\n\r\n";
 
         return retorno;
 
     }
 
-    //GET and SET
     public String getCriteriosCorrecao() {
         return criteriosCorrecao;
     }

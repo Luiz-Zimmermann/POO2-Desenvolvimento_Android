@@ -5,33 +5,35 @@
  */
 package pkg01.geradorprova;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author 6530729
  */
 public class Prova {
 
-    //ATRIBUTOS
     private String nomeDaDisciplina;
     private String local;
     private String data;
-    private Discursiva[] questoesDiscursivas;
-    private Objetiva[] questoesObjetivas;
+    private ArrayList<Questao> questao;
     private int peso;
 
     //CONSTRUTOR
     public Prova() {
-
+        questao= new ArrayList<>();
     }
 
+    
     //METODOS
     public String obtemDetalhes() {
 
-        String retorno = "------------------------------------------\n\n";
+        String retorno = "------------------------------------------\r\n\r\n";
 
-        retorno += "Nome da disciplina: " + this.getNomeDaDisciplina() + "\n";
-        retorno += "Local da prova: " + this.getLocal() + "\n";
-        retorno += "Data da prova: " + this.getData() + "\n";
+        retorno += "Nome da disciplina: " + this.getNomeDaDisciplina() + "\r\n";
+        retorno += "Local da prova: " + this.getLocal() + "\r\n";
+        retorno += "Data da prova: " + this.getData() + "\r\n";
         retorno += "Peso da prova: " + this.getPeso();
 
         return retorno;
@@ -42,10 +44,10 @@ public class Prova {
 
         String retorno = this.obtemDetalhes();
         boolean empty = true;
-        retorno += "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n";
+        retorno += "\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\n";
 
         //QUESTÕES DISCURSIVAS
-        for (Discursiva x : questoesDiscursivas) {
+        for (Questao x : questao) {
             if (x != null) {
                 empty = false;
                 break;
@@ -54,40 +56,18 @@ public class Prova {
 
         if (empty == false) {
 
-            for (int i = 0; i < questoesDiscursivas.length; i++) {
-                retorno += (i + 1) + "-" + this.questoesDiscursivas[i].retornaQuestao();
+            for (int i = 0; i < questao.size() ; i++) {
+                retorno += (i + 1) + "-" + this.questao.get(i).retornaQuestao();
             }
-
+            
         } else {
-            retorno += "Nao ha questoes discursivas.\n";
-        }
-
-        retorno += "___ __ ___ __ ___ __ ___ __ ___ __\n\n";
-
-        //QUESTÕES OBJETIVAS
-        retorno += "\n\n";
-
-        boolean empty2 = true;
-        for (Objetiva x : questoesObjetivas) {
-            if (x != null) {
-                empty2 = false;
-                break;
-            }
-        }
-
-        if (empty2 == false) {
-
-            for (int i = 0; i < questoesObjetivas.length; i++) {
-                retorno += (i + 1) + "-" + this.questoesObjetivas[i].retornaQuestao();
-            }
-        } else {
-            retorno += "Nao ha questoes objetivas.\n";
+            retorno += "Nao ha questoes.\r\n";
         }
 
         return retorno;
     }
-    //GET and SETTERS
-
+    
+    //Get and Setters
     public String getNomeDaDisciplina() {
         return nomeDaDisciplina;
     }
@@ -112,28 +92,27 @@ public class Prova {
         this.data = data;
     }
 
-    public int getPeso() {
+    public ArrayList<Questao> getQuestao() {
+        return questao;
+    }
+
+    public void setQuestao(ArrayList<Questao> questao) {
+        this.questao = questao;
+    }
+
+    
+
+    
+    
+    public double getPeso() {
         return peso;
     }
 
     public void setPeso(int peso) {
         this.peso = peso;
     }
-
-    public Discursiva[] getQuestoesDiscursivas() {
-        return questoesDiscursivas;
-    }
-
-    public void setQuestoesDiscursivas(Discursiva[] questoesDiscursivas) {
-        this.questoesDiscursivas = questoesDiscursivas;
-    }
-
-    public Objetiva[] getQuestoesObjetivas() {
-        return questoesObjetivas;
-    }
-
-    public void setQuestoesObjetivas(Objetiva[] questoesObjetivas) {
-        this.questoesObjetivas = questoesObjetivas;
-    }
+    
+    
+    
 
 }

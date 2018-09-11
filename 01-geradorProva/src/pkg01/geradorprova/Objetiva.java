@@ -11,7 +11,7 @@ package pkg01.geradorprova;
  */
 final class Objetiva extends Questao {
 
-    //ATRIBUTOS
+     //ATRIBUTOS
     private String[] opcoes;
     private int respostaCorreta;
 
@@ -22,26 +22,24 @@ final class Objetiva extends Questao {
 
     }
 
-    @Override
     public String retornaQuestao() {
 
         String retorno = "";
 
         //QUESTÕES OBJETIVAS
-        retorno += "Questões Objetivas. \n";
+        //retorno += "Questões Objetivas. \n";
 
-        retorno +=  this.getPergunta() + " " + "[" + this.getPeso() + "]" + "\n";
+        retorno +=  this.getPergunta() + " " + "[" + this.getPeso() + "]" + "\r\n";
 
         String[] op = this.getOpcoes();
         for (int j = 0; j < 5; j++) {
-            retorno += " (" + (j + 1) + ") " + op[j] + "\n";
+            retorno += " (" + (j + 1) + ") " + op[j] + "\r\n";
         }
-        retorno += "R: " + this.getRespostaCorreta() + "\n\n";
+        retorno += "R: " + this.getRespostaCorreta() + "\r\n\r\n";
 
         return retorno;
     }
 
-    //GET and SETTERS
     public String[] getOpcoes() {
         return opcoes;
     }
@@ -57,7 +55,5 @@ final class Objetiva extends Questao {
     public void setRespostaCorreta(int respostaCorreta) {
         this.respostaCorreta = respostaCorreta;
     }
-
-    
 
 }

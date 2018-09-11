@@ -1,6 +1,11 @@
 package pkg01.geradorprova;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileOutputStream;
 
 /**
  *
@@ -8,175 +13,186 @@ import java.util.Scanner;
  */
 public class GeradorProva {
 
-    //FUNÇÃO PARA OBTER OS DADOS DA PROVA
-    public static void obtemInfo(Prova x) {
+    //Função que obtem os dados da prova
+    static public void obtemProva(Prova x) {
 
-        Scanner scan = new Scanner(System.in);
-
-        String frase;
-
-        System.out.println("Por favor, informe o nome da disciplina: ");
-        frase = scan.nextLine();
-        x.setNomeDaDisciplina(frase);
-
-        System.out.println("Por favor, informe o local da prova: ");
-        frase = scan.nextLine();
-        x.setLocal(frase);
-
-        System.out.println("Por favor, informe a data em que a prova ira ser realizada: ");
-        frase = scan.nextLine();
-        x.setData(frase);
-
-        System.out.println("Por favor, informe o peso da nota da prova: ");
-        while (!scan.hasNextInt()) {
-            System.out.println("Valor incorreto, por favor insira um valor valido: ");
-            scan.next();
+        x.setNomeDaDisciplina(JOptionPane.showInputDialog("Informe o nome da disciplina."));
+        x.setLocal(JOptionPane.showInputDialog("Informe o local da prova."));
+        x.setData(JOptionPane.showInputDialog("Informe a data da prova."));
+        while (true) {
+            try {
+                x.setPeso(Integer.parseInt(JOptionPane.showInputDialog("Informe o peso da prova.")));
+                break;
+            } catch (Exception a) {
+                JOptionPane.showMessageDialog(null, a.getMessage());
+                JOptionPane.showMessageDialog(null, "Valor incorreto!!!!!");
+            }
         }
-        x.setPeso(scan.nextInt());
-
-        scan.nextLine();
-        System.out.println("");
-
     }
 
-    //FUNÇÃO PARA OBTER OS DADOS DAS QUESTÕES DISCURSIVAS
-    public static Discursiva[] obtemProvaD(Prova x) {
+    //Função que retorna uma questão Discursiva
+    static public Discursiva obtemDis(Discursiva x) {
 
-        Scanner scan = new Scanner(System.in);
+        x.setPergunta(JOptionPane.showInputDialog("Informe a pergunta: "));
 
-        int num;
-        double num2;
-        String frase;
+        x.setCriteriosCorrecao(JOptionPane.showInputDialog("Informe o critério de correção: "));
 
-        System.out.println("Por favor, informe o numero de perguntas discursivas: ");
+        while (true) {
+            try {
+                x.setPeso(Double.parseDouble(JOptionPane.showInputDialog("Informe o peso da questao: ")));
 
-        while (!scan.hasNextInt()) {
-            System.out.println("Valor incorreto, por favor insira um valor valido: ");
-            scan.next();
-        }
-
-        num = scan.nextInt();
-        Discursiva[] vet = new Discursiva[num];
-
-        scan.nextLine();
-
-        if (num >= 1) {
-            System.out.println("Por favor, escreva as perguntas abaixo. ");
-        } else {
-            System.out.println("Nenhuma questao discursiva.\n");
-        }
-        for (int i = 0; i < vet.length; i++) {
-
-            vet[i] = new Discursiva();
-            //INFORMA A QUESTAO
-            System.out.println("Pergunta numero " + (i + 1) + ": ");
-            frase = scan.nextLine();
-            vet[i].setPergunta(frase);
-            System.out.println("");
-            //PESO DA QUESTAO
-            System.out.println("Informe o peso da questão: ");
-            while (!scan.hasNextDouble()) {//verificação do peso
-                System.out.println("Valor incorreto, por favor, insira um valor valido.");
-                scan.next();
+                break;
+            } catch (Exception a) {
+                JOptionPane.showMessageDialog(null, a.getMessage());
+                JOptionPane.showMessageDialog(null, "Valor incorreto.");
             }
-            num2 = scan.nextDouble();
-            vet[i].setPeso(num2);
-            scan.nextLine();
-            
-            //CRITERIOS DA QUESTAO
-            System.out.println("\nInforme o critério de avaliação da questão");
-            frase = scan.nextLine();
-            vet[i].setCriteriosCorrecao(frase);
-            System.out.println("\n");
 
         }
 
-        //RETORNA O VETOR COM TODAS AS INFORMAÇOES SOBRE AS QUESTOES DISCURSIVAS
-        return vet;
+        return x;
     }
 
-    //FUNÇÃO PARA OBTER OS DADOS DAS QUESTÕES OBJETIVAS
-    public static Objetiva[] obtemProvaO(Prova x) {
+    //Função que retorna uma questão objetiva
+    static public Objetiva obtemObj(Objetiva x) {
+        //Pergunta
+        x.setPergunta(JOptionPane.showInputDialog("Informe a pergunta: "));
 
-        Scanner scan = new Scanner(System.in);
-
-        int num;
-        double num2;
-        String frase;
-
-        System.out.println("Por favor, informe o numero de perguntas objetivas: ");
-
-        while (!scan.hasNextInt()) {
-            System.out.println("Valor incorreto, por favor insira um valor valido: ");
-            scan.next();
+        //Declaração das opções 
+        String[] op = new String[5];
+        for (int i = 0; i < 5; i++) {
+            op[i] = JOptionPane.showInputDialog("Informe a alternativa " + (i + 1) + ":");
         }
+        x.setOpcoes(op);
 
-        num = scan.nextInt();
-        Objetiva[] vet = new Objetiva[num];
-        scan.nextLine();
-
-        if (num >= 1) {
-            System.out.println("Por favor, escreva as perguntas abaixo. ");
-        } else {
-            System.out.println("Nenhuma quetao objetiva.\n");
-        }
-
-        for (int i = 0; i < vet.length; i++) {
-            //ALOCA UM ESPAÇO NA MEMORIA DO TIPO OBJETIVA PARA CADA POSIÇÃO DO VETOR
-            vet[i] = new Objetiva();
-            //QUESTÕES
-            System.out.println("Pergunta numero " + (i + 1) + ": ");
-            frase = scan.nextLine();
-            vet[i].setPergunta(frase);
-            //OPÇÕES
-            System.out.println("Informe as 5 opções de resposta para a questão");
-            String[] vetAux = new String[5];
-            for (int j = 0; j < vetAux.length; j++) {
-                System.out.println("Opção " + (j + 1) + ": ");
-                frase = scan.nextLine();
-                vetAux[j] = frase;
+        //Resposta correta e consistencia
+        while (true) {
+            try {
+                x.setRespostaCorreta(Integer.parseInt(JOptionPane.showInputDialog("Informe a resposta correta(Entre 1 a 5).: ")));
+                if (x.getRespostaCorreta() < 1 || x.getRespostaCorreta() > 5) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            } catch (Exception a) {
+                JOptionPane.showMessageDialog(null, a.getMessage());
+                JOptionPane.showMessageDialog(null, "Valor incorreto.");
             }
-            vet[i].setOpcoes(vetAux);
-            //RESPOSTAS
-            System.out.println("Informe o numero da alternativa correta: ");
-
-            while (!scan.hasNextInt()) {
-                System.out.println("Valor incorreto, por favor insira um valor valido: ");
-                scan.next();
-            }
-            num = scan.nextInt();
-            vet[i].setRespostaCorreta(num);
-
-            scan.nextLine();
-
-            //PESOS
-            System.out.println("Informe o peso da questão: ");
-
-            while (!scan.hasNextDouble()) {
-                System.out.println("Valor incorreto, por favor insira um valor valido: ");
-                scan.next();
-            }
-            num2 = scan.nextDouble();
-            vet[i].setPeso(num2);
-
-            scan.nextLine();
 
         }
+        //Peso da questão e consistencia
+        while (true) {
+            try {
+                x.setPeso(Double.parseDouble(JOptionPane.showInputDialog("Informe o peso da questao: ")));
 
-        return vet;
+                break;
+            } catch (Exception a) {
+                JOptionPane.showMessageDialog(null, a.getMessage());
+                JOptionPane.showMessageDialog(null, "Valor incorreto.");
+            }
+        }
+
+        return x;
     }
 
+    
+   
     //FUNÇÃO MAIN DO PROGRAMA
     public static void main(String[] args) {
 
-        Prova x = new Prova();
+    Scanner scan = new Scanner(System.in);
+        Prova avaliacao = new Prova();
 
-        obtemInfo(x);
-        x.setQuestoesDiscursivas(obtemProvaD(x));
-        x.setQuestoesObjetivas(obtemProvaO(x));
+        obtemProva(avaliacao);
 
-        //System.out.println(x.obtemDetalhes());
-        System.out.println(x.obtemProvaImpressao());
+        boolean cond = true;
+
+        ArrayList<Questao> lista = new ArrayList<>();
+
+        do {
+            String op = JOptionPane.showInputDialog("Discursiva(R) ou Objetiva(O)?");
+            do {
+
+                try {
+
+                    if (!"O".equals(op) && !"R".equals(op)) {
+                        JOptionPane.showMessageDialog(null, op);
+                        throw new IllegalArgumentException();
+                    }
+                    break;
+
+                } catch (IllegalArgumentException a) {
+                    JOptionPane.showMessageDialog(null, a.getMessage());
+                    JOptionPane.showMessageDialog(null, "Valor incorreto, informe novamente.");
+                    op = JOptionPane.showInputDialog("Discursiva(R) ou Objetiva(O)?");
+                }
+            } while (true);
+
+            if ("R".equals(op)) {
+                Discursiva x = new Discursiva();
+                lista.add(obtemDis(x));
+
+            } else if ("O".equals(op)) {
+                Objetiva x = new Objetiva();
+                lista.add(obtemObj(x));
+
+            } else {
+                System.out.println("Não é possivel");
+            }
+
+            String condi = JOptionPane.showInputDialog("Deseja adicionar mais Questões?,Sim(S) ou Não(N)");
+            do {
+                if ("S".equals(condi)) {
+                    cond = true;
+                } else if ("N".equals(condi)) {
+                    cond = false;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Valor incorreto, insira novamente.");
+                    condi = JOptionPane.showInputDialog("Deseja adicionar mais Questões?,Sim(S) ou Não(N)");
+
+                }
+            } while (!"S".equals(condi) && !"N".equals(condi));
+
+        } while (cond == true);
+
+        avaliacao.setQuestao(lista);
+        System.out.println(avaliacao.obtemProvaImpressao());
+
+        FileOutputStream escrever = null;
+        String salvar = avaliacao.obtemProvaImpressao();
+
+        try {
+
+            File file = new File("C:\\Users\\Luiz Zimmermann\\Desktop\\newfile.txt");
+            boolean vCria = file.createNewFile();
+            escrever = new FileOutputStream(file);
+            
+            
+            if (vCria) {
+                JOptionPane.showMessageDialog(null, "Arquivo criado com sucesso.");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "O arquivo ja existe");
+            }
+
+            byte[] bytesArray = salvar.getBytes();
+            escrever.write(bytesArray);
+            escrever.flush();
+            System.out.println("File Written Successfully");
+
+        } catch (IOException a) {
+            JOptionPane.showMessageDialog(null, a.getMessage());
+
+        } catch (SecurityException a) {
+            JOptionPane.showMessageDialog(null, a.getMessage() + "\tAcesso negado");
+        } finally {
+            try {
+                if (escrever != null) {
+
+                    escrever.close();
+                }
+            } catch (IOException esc) {
+                JOptionPane.showMessageDialog(null, esc.getMessage());
+            }
+        }
 
     }
 
