@@ -29,7 +29,7 @@ public class Prova {
     //METODOS
     public String obtemDetalhes() {
 
-        String retorno = "------------------------------------------\r\n\r\n";
+        String retorno = "";
 
         retorno += "Nome da disciplina: " + this.getNomeDaDisciplina() + "\r\n";
         retorno += "Local da prova: " + this.getLocal() + "\r\n";
@@ -44,7 +44,7 @@ public class Prova {
 
         String retorno = this.obtemDetalhes();
         boolean empty = true;
-        retorno += "\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\n";
+        retorno += "\r\n================================================================\r\n\r\n";
 
         //QUESTÕES DISCURSIVAS
         for (Questao x : questao) {

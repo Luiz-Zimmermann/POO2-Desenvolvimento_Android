@@ -23,8 +23,9 @@ final class Discursiva extends Questao {
             //retorno += "Questões Discursivas. \n";
 
             retorno +=  this.getPergunta() + " [" + this.getPeso() + "]" + "\r\n";
-            retorno += "______________________________________________\r\n";
-            retorno += "______________________________________________\r\n";
+            retorno += "________________________________________________________________\r\n";
+            retorno += "________________________________________________________________\r\n";
+            retorno += "________________________________________________________________\r\n";
             retorno += "Critério: " + this.getCriteriosCorrecao() + "\r\n\r\n";
 
         return retorno;

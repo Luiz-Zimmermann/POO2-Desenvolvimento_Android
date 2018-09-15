@@ -32,10 +32,11 @@ final class Objetiva extends Questao {
         retorno +=  this.getPergunta() + " " + "[" + this.getPeso() + "]" + "\r\n";
 
         String[] op = this.getOpcoes();
+        char alter='a';
         for (int j = 0; j < 5; j++) {
-            retorno += " (" + (j + 1) + ") " + op[j] + "\r\n";
+            retorno += " (" + (alter++) + ") " + op[j] + "\r\n\r\n";
         }
-        retorno += "R: " + this.getRespostaCorreta() + "\r\n\r\n";
+        //retorno += "R: " + this.getRespostaCorreta() + "\r\n\r\n";
 
         return retorno;
     }

@@ -22,10 +22,13 @@ public class GeradorProva {
         while (true) {
             try {
                 x.setPeso(Integer.parseInt(JOptionPane.showInputDialog("Informe o peso da prova.")));
+                if(x.getPeso()<=0){
+                    throw new IllegalArgumentException();
+                }
                 break;
             } catch (Exception a) {
                 JOptionPane.showMessageDialog(null, a.getMessage());
-                JOptionPane.showMessageDialog(null, "Valor incorreto!!!!!");
+                JOptionPane.showMessageDialog(null, "Valor incorreto!!!.\n Informe um valor correto maior que 0");
             }
         }
     }
@@ -40,11 +43,13 @@ public class GeradorProva {
         while (true) {
             try {
                 x.setPeso(Double.parseDouble(JOptionPane.showInputDialog("Informe o peso da questao: ")));
-
+                if(x.getPeso()<=0){
+                    throw new IllegalArgumentException();
+            }
                 break;
             } catch (Exception a) {
                 JOptionPane.showMessageDialog(null, a.getMessage());
-                JOptionPane.showMessageDialog(null, "Valor incorreto.");
+                JOptionPane.showMessageDialog(null, "Valor incorreto.\n Informe um valor correto maior que 0");
             }
 
         }
@@ -74,7 +79,7 @@ public class GeradorProva {
                 break;
             } catch (Exception a) {
                 JOptionPane.showMessageDialog(null, a.getMessage());
-                JOptionPane.showMessageDialog(null, "Valor incorreto.");
+                JOptionPane.showMessageDialog(null, "Valor incorreto!!!\n Informe um valor entre 1 e 5.");
             }
 
         }
@@ -82,11 +87,13 @@ public class GeradorProva {
         while (true) {
             try {
                 x.setPeso(Double.parseDouble(JOptionPane.showInputDialog("Informe o peso da questao: ")));
-
+                if(x.getPeso()<=0){
+                    throw new IllegalArgumentException();
+                }
                 break;
             } catch (Exception a) {
                 JOptionPane.showMessageDialog(null, a.getMessage());
-                JOptionPane.showMessageDialog(null, "Valor incorreto.");
+                JOptionPane.showMessageDialog(null, "Valor incorreto!!!\n Informe um valor correto maior que 0");
             }
         }
 
@@ -108,12 +115,12 @@ public class GeradorProva {
         ArrayList<Questao> lista = new ArrayList<>();
 
         do {
-            String op = JOptionPane.showInputDialog("Discursiva(R) ou Objetiva(O)?");
+            String op = JOptionPane.showInputDialog("Discursiva(D) ou Objetiva(O)?");
             do {
 
                 try {
 
-                    if (!"O".equals(op) && !"R".equals(op)) {
+                    if (!"O".equals(op) && !"D".equals(op)) {
                         JOptionPane.showMessageDialog(null, op);
                         throw new IllegalArgumentException();
                     }
@@ -122,11 +129,11 @@ public class GeradorProva {
                 } catch (IllegalArgumentException a) {
                     JOptionPane.showMessageDialog(null, a.getMessage());
                     JOptionPane.showMessageDialog(null, "Valor incorreto, informe novamente.");
-                    op = JOptionPane.showInputDialog("Discursiva(R) ou Objetiva(O)?");
+                    op = JOptionPane.showInputDialog("Discursiva(D) ou Objetiva(O)?");
                 }
             } while (true);
 
-            if ("R".equals(op)) {
+            if ("D".equals(op)) {
                 Discursiva x = new Discursiva();
                 lista.add(obtemDis(x));
 
@@ -158,10 +165,14 @@ public class GeradorProva {
 
         FileOutputStream escrever = null;
         String salvar = avaliacao.obtemProvaImpressao();
-
+        
+        String nome=JOptionPane.showInputDialog("Informe o nome do arquivo para salvar.\n"
+                + "(Não informe nomes que já estao em uso)");
+        
+        
         try {
 
-            File file = new File("C:\\Users\\Luiz Zimmermann\\Desktop\\newfile.txt");
+            File file = new File(nome+".txt");
             boolean vCria = file.createNewFile();
             escrever = new FileOutputStream(file);
             
@@ -170,7 +181,7 @@ public class GeradorProva {
                 JOptionPane.showMessageDialog(null, "Arquivo criado com sucesso.");
 
             } else {
-                JOptionPane.showMessageDialog(null, "O arquivo ja existe");
+                JOptionPane.showMessageDialog(null, "O arquivo ja existe e será sobreescrito.");
             }
 
             byte[] bytesArray = salvar.getBytes();
