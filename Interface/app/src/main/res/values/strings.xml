@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Create new contact</string>
+    <string name="first">First name</string>
+    <string name="second"> Last name</string>
+    <string name="phone">Phone number</string>
+    <string name="cellph">Cell phone number</string>
+    <string name="email">E-mail</string>
+</resources>
