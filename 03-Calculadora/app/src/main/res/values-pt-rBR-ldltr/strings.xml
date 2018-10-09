@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Coversor de Unidades</string>
+    <string name="converter">Converter</string>
+    <string name="aviso">Toque na unidade para trocar</string>
+
+    <string-array name="array1">
+    <item>km</item>
+    <item>m</item>
+    <item>cm</item>
+    <item>mm</item>
+    <item>μm</item>
+    <item>nm</item>
+    </string-array>
+
+    <string-array name="array2">
+    <item>km</item>
+    <item>m</item>
+    <item>cm</item>
+    <item>mm</item>
+    <item>μm</item>
+    <item>nm</item>
+    </string-array>
+
+</resources>

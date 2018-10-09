@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Unit Converter</string>
+    <string name="converter">Convert</string>
+    <string name="aviso">Tap on the unit to swap</string>
+
+    <string-array name="array1">
+        <item>km</item>
+        <item>m</item>
+        <item>cm</item>
+        <item>mm</item>
+        <item>μm</item>
+        <item>nm</item>
+    </string-array>
+
+    <string-array name="array2">
+        <item>km</item>
+        <item>m</item>
+        <item>cm</item>
+        <item>mm</item>
+        <item>μm</item>
+        <item>nm</item>
+    </string-array>
+
+</resources>
