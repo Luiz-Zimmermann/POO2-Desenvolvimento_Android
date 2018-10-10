@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Area Calculation</string>
+    <string name="circle">Circle</string>
+    <string name="triangle">Triangle</string>
+    <string name="retangle">Retangle</string>
+    <string name="next">Next</string>
+    <string name="warning">Chose one of the options </string>
+    <string name="text">Chose one of the geometric form to calculate </string>
+    <string name="infoR">Inform the radios</string>
+    <string name="infoAlt">Inform the height</string>
+    <string name="infoBase">Inform the base</string>
+
+
+    <string name="calculate">Calculate</string>
+
+</resources>
