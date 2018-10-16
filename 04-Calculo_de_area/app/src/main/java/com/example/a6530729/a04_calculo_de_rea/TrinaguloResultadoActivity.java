@@ -14,10 +14,18 @@ public class TrinaguloResultadoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trinagulo_resultado);
 
-        double result = this.getIntent().getDoubleExtra("Triangulo", -1);
+        double alt = this.getIntent().getDoubleExtra("alt", -1);
+        double base = this.getIntent().getDoubleExtra("base", -1);
+        double resultado= (alt*base)/2;
+
         TextView text= findViewById(R.id.result);
+        TextView textalt= findViewById(R.id.alt);
+        TextView textbase= findViewById(R.id.base);
         NumberFormat numF = DecimalFormat.getInstance();
         numF.setMaximumFractionDigits(2);
-        text.setText(numF.format(result));
+        text.setText(numF.format(resultado)+"cm²");
+        textalt.setText(alt+"");
+        textbase.setText(base+"");
+
     }
 }

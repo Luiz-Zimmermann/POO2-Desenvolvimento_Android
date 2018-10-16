@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     public void escolha(View v){
         RadioGroup ops= findViewById(R.id.Escolha);
 
@@ -29,11 +28,8 @@ public class MainActivity extends AppCompatActivity {
             Intent dadosRetangulo = new Intent(this, DadosRetanguloActivity.class);
             this.startActivity(dadosRetangulo);
         }else{
-            Toast.makeText(this, getString(R.string.warning), Toast.LENGTH_LONG ).show();
+            Toast.makeText(this, getString(R.string.warning), Toast.LENGTH_SHORT ).show();
         }
-
-
-
     }
 
 

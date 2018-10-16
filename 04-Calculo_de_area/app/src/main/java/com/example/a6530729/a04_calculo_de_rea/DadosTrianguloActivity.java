@@ -16,16 +16,18 @@ public class DadosTrianguloActivity extends AppCompatActivity {
 
     public void calcularArea(View v){
 
-        EditText altura= findViewById(R.id.alturainfo);
-        EditText base= findViewById(R.id.baseinfo);
-
-        double altD= Double.parseDouble(altura.getText().toString());
-        double baseD= Double.parseDouble(base.getText().toString());
-        double resultado= altD*baseD;
-
-        Intent resultadoTrinagulo= new Intent(this, RetanguloResultadoActivity.class);
-        resultadoTrinagulo.putExtra("Triangulo", resultado);
-        this.startActivity(resultadoTrinagulo);
-
+        EditText altura= findViewById(R.id.alturainfo2);
+        EditText base= findViewById(R.id.baseinfo2);
+        try {
+            double altD = Double.parseDouble(altura.getText().toString());
+            double baseD = Double.parseDouble(base.getText().toString());
+            Intent resultadoTrinagulo = new Intent(this, TrinaguloResultadoActivity.class);
+            resultadoTrinagulo.putExtra("alt", altD);
+            resultadoTrinagulo.putExtra("base", baseD);
+            this.startActivity(resultadoTrinagulo);
+        }catch (Exception e){
+            altura.setError(getString(R.string.warninginfo));
+            base.setError(getString(R.string.warninginfo));
+        }
     }
 }

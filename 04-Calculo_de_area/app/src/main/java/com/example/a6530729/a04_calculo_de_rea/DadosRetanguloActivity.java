@@ -16,17 +16,19 @@ public class DadosRetanguloActivity extends AppCompatActivity {
 
     public void calcularArea(View v){
 
-        EditText altura= findViewById(R.id.alturainfo);
-        EditText base= findViewById(R.id.baseinfo);
-
-        double altD= Double.parseDouble(altura.getText().toString());
-        double baseD= Double.parseDouble(base.getText().toString());
-        double resultado= altD*baseD;
-
-        Intent resultadoRetangulo = new Intent(this, RetanguloResultadoActivity.class);
-        resultadoRetangulo.putExtra("Retangulo", resultado);
-        this.startActivity(resultadoRetangulo);
-
+        EditText altura= findViewById(R.id.alturainfo2);
+        EditText base= findViewById(R.id.baseinfo2);
+        try {
+            double altD = Double.parseDouble(altura.getText().toString());
+            double baseD = Double.parseDouble(base.getText().toString());
+            Intent resultadoRetangulo = new Intent(this, RetanguloResultadoActivity.class);
+            resultadoRetangulo.putExtra("alt", altD);
+            resultadoRetangulo.putExtra("base", baseD);
+            this.startActivity(resultadoRetangulo);
+        }catch (Exception e){
+            altura.setError(getString(R.string.warninginfo));
+            base.setError(getString(R.string.warninginfo));
+        }
     }
 
 }

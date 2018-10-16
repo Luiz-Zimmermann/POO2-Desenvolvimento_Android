@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Calculo de Área</string>
+    <string name="app_name">Calculadora de Área</string>
     <string name="circle">Círculo</string>
     <string name="triangle">Triângulo</string>
     <string name="retangle">Retângulo</string>
     <string name="next">Avançar</string>
     <string name="warning">Escolha uma das opções</string>
-    <string name="text">Escolha uma das formas geométricas que deseja calular</string>
-    <string name="infoR">Informe o raio</string>
+    <string name="text">Escolha uma das formas para calcular</string>
+    <string name="infoR">Informe o raio em cm</string>
     <string name="calculate">Calcular</string>
-    <string name="infoAlt">Informe a altura</string>
-    <string name="infoBase">Informe a base</string>
+    <string name="infoAlt">Informe a altura em cm</string>
+    <string name="infoBase">Informe a base em cm</string>
+    <string name="totalarea">Área Total:</string>
+    <string name="warninginfo">Informe um valor valido!!!</string>m
+
+
 
 </resources>

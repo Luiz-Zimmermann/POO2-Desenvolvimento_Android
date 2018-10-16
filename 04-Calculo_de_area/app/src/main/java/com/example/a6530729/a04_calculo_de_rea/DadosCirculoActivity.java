@@ -18,13 +18,15 @@ public class DadosCirculoActivity extends AppCompatActivity {
     public void calcularArea(View v){
 
         EditText raio = findViewById(R.id.Raioinfo);
-        double  raioD= Double.parseDouble(raio.getText().toString());
-        double resultado = Math.PI*Math.pow(raioD,2);
-
-        Intent resultadoCirculo = new Intent(this, CirculoResultadoctivity.class);
-        resultadoCirculo.putExtra("AreaCirculo", resultado);
-        this.startActivity(resultadoCirculo);
-
+        try {
+            double raioD = Double.parseDouble(raio.getText().toString());
+            Intent resultadoCirculo = new Intent(this, CirculoResultadoctivity.class);
+            resultadoCirculo.putExtra("raio", raioD);
+            this.startActivity(resultadoCirculo);
+        }catch(Exception e){
+            raio.setError(getString(R.string.warninginfo));
+            return;
+        }
 
     }
 

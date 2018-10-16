@@ -15,6 +15,8 @@
         android:layout_marginStart="163dp"
         android:layout_marginTop="50dp"
         android:text="@string/infoAlt"
+        android:textSize="18sp"
+        android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,12 +29,14 @@
         android:layout_marginStart="163dp"
         android:layout_marginTop="56dp"
         android:text="@string/infoBase"
+        android:textSize="18sp"
+        android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alturainfo" />
+        app:layout_constraintTop_toBottomOf="@+id/alturainfo2" />
 
     <EditText
-        android:id="@+id/alturainfo"
+        android:id="@+id/alturainfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
@@ -45,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/baseinfo"
+        android:id="@+id/baseinfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
@@ -68,7 +72,7 @@
         android:text="@string/calculate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/baseinfo" />
+        app:layout_constraintTop_toBottomOf="@+id/baseinfo2" />
 
 
 </android.support.constraint.ConstraintLayout>

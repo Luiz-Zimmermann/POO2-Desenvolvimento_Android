@@ -4,24 +4,24 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icone"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icone"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DadosCirculoActivity" />
-        <activity android:name=".DadosTrianguloActivity" />
-        <activity android:name=".DadosRetanguloActivity" />
-        <activity android:name=".CirculoResultadoctivity" />
-        <activity android:name=".TrinaguloResultadoActivity" />
-        <activity android:name=".RetanguloResultadoActivity"></activity>
+        <activity android:name=".DadosCirculoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DadosTrianguloActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DadosRetanguloActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CirculoResultadoctivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TrinaguloResultadoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RetanguloResultadoActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
