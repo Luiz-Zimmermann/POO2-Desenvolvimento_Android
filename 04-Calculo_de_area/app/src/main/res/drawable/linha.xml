@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:shape="line">
-            <stroke android:color="#a19e9e" android:width="2dp"/>
-            <size android:width="103dp" android:height="110dp"/>
-        </shape>
+        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+            android:width="150dp"
+            android:height="150dp"
+            android:viewportHeight="200"
+            android:viewportWidth="200">
+
+            <path
+                android:strokeColor="#a39f9f"
+                android:strokeWidth="2"
+                android:pathData="M0 100 L137 100"/>
+        </vector>
     </item>
 </selector>
