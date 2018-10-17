@@ -13,5 +13,6 @@
     <string name="totalarea">Total Area:</string>m
     <string name="calculate">Calculate</string>m
     <string name="warninginfo">Inform a valid value!!!</string>m
+    <string name="menu">Return to menu</string>m
 
 </resources>

@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/04-Calculo_de_area.iml" filepath="$PROJECT_DIR$/04-Calculo_de_area.iml" />
+      <module fileurl="file://C:\Users\6530729\Downloads\aula-poo\04-Calculo_de_area\04-Calculo_de_area.iml" filepath="C:\Users\6530729\Downloads\aula-poo\04-Calculo_de_area\04-Calculo_de_area.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\6530729\Downloads\aula-poo\04-Calculo_de_area\app\app.iml" filepath="C:\Users\6530729\Downloads\aula-poo\04-Calculo_de_area\app\app.iml" />
     </modules>
   </component>
 </project>

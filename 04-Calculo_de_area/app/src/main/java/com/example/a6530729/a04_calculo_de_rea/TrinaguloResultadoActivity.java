@@ -1,7 +1,9 @@
 package com.example.a6530729.a04_calculo_de_rea;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -27,5 +29,12 @@ public class TrinaguloResultadoActivity extends AppCompatActivity {
         textalt.setText(alt+"");
         textbase.setText(base+"");
 
+    }
+
+    public void returnMenu(View V){
+
+        Intent voltar =  new Intent(this, MainActivity.class);
+        voltar.addFlags(voltar.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(voltar);
     }
 }
