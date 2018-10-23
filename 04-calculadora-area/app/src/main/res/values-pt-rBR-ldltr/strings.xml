@@ -14,5 +14,6 @@
     <string name="infoBase">Informe a base em cm</string>
     <string name="totalarea">Área Total:</string>
     <string name="warninginfo">Informe um valor valido!!!</string>m
+    <string name="menu">Retornar para o menu</string>m
 
 </resources>

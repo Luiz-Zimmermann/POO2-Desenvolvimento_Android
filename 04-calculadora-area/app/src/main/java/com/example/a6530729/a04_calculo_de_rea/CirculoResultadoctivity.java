@@ -28,4 +28,11 @@ public class CirculoResultadoctivity extends AppCompatActivity {
 
     }
 
+    public void returnMenu(View V){
+
+        Intent voltar =  new Intent(this, MainActivity.class);
+        voltar.addFlags(voltar.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(voltar);
+    }
+
 }

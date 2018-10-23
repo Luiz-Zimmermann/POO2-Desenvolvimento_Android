@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sla shit</string>
+    <string name="adic">Add a new iten</string>
+    <string name="verlist">View list</string>
+    <string name="add">Done</string>
+
+    <array name="lista_postos">
+        <item>Petrobras</item>
+        <item>Ipiranga</item>
+        <item>Shell</item>
+    </array>
+
+</resources>
