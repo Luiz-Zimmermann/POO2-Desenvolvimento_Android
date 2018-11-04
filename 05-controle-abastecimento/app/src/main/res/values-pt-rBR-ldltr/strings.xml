@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Calculo de autonomia</string>
+    <string name="kilo">Quilometragem atual:</string>
+    <string name="save">Salvar</string>
+    <string name="date">Data:</string>
+    <string name="posto">Posto:</string>
+    <string name="litros">Litros abastecidos:</string>
+
+    <array name="lista_postos">
+        <item>Petrobras</item>
+        <item>Ipiranga</item>
+        <item>Shell</item>
+        <item>Texaco</item>
+    </array>
+
+</resources>

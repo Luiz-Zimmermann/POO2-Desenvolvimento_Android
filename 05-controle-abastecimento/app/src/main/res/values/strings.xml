@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Autonomy calculation</string>
+    <string name="kilo">Current mileage:</string>
+    <string name="save">Save</string>
+    <string name="date">Date:</string>
+    <string name="posto">Fuel station:</string>
+    <string name="litros">Quantity of liters supplied:</string>
+
+    <array name="lista_postos">
+        <item>Petrobras</item>
+        <item>Ipiranga</item>
+        <item>Shell</item>
+        <item>Texaco</item>
+    </array>
+
+</resources>

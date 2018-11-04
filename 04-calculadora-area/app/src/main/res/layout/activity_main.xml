@@ -67,4 +67,13 @@
             android:text="@string/retangle" />
     </RadioGroup>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/circulo"
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="424dp" />
+
 </android.support.constraint.ConstraintLayout>
