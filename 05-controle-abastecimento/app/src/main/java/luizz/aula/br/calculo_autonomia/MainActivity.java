@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView autonomia;
 
     int codigo = 2409;
-    ArrayList<Info_List_Item> dados = new ArrayList<Info_List_Item>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,42 +29,39 @@ public class MainActivity extends AppCompatActivity {
 
         add = findViewById(R.id.add);
         autonomia = findViewById(R.id.tvKilo);
+
+        ArrayList<Info_List_Item> dados = new ArrayList<Info_List_Item>();
         dados = Info_ListDAO.carrega_Lista(this.getApplicationContext());
         if(dados.size()>1){
-            double litrosTotal=0, distance=0, kmpL;
+            double litrosTotal=0, distance, kmpL;
             distance = dados.get(dados.size()-1).getDistancia() - dados.get(0).getDistancia();
-            //distance = dados.get(0).getDistancia() - dados.get(dados.size()).getDistancia();
 
-
-            for(int i=0; i<= dados.size()-1; i++){
+            for(int i=0; i<dados.size()-1; i++){
                 litrosTotal += dados.get(i).getLitros();
             }
             kmpL=distance/litrosTotal;
             NumberFormat numF = DecimalFormat.getInstance();
             numF.setMaximumFractionDigits(2);
             autonomia.setText(numF.format(kmpL));
-
         }else{
             autonomia.setText("----");
         }
-
-
     }
 
     public void onclick(View v){
 
        Intent trocar_act = new Intent(this.getApplicationContext(), list_View.class);
-       //startActivity(trocar_act);
-        startActivityForResult(trocar_act, codigo);
+       startActivityForResult(trocar_act, codigo);
     }
 
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode==codigo) {
             if (resultCode == 1) {
+                ArrayList<Info_List_Item> dados = new ArrayList<Info_List_Item>();
                 dados = Info_ListDAO.carrega_Lista(this.getApplicationContext());
                 if(dados.size()>1){
-                    double litrosTotal=0, distance=0, kmpL;
+                    double litrosTotal=0, distance, kmpL;
                     distance = dados.get(dados.size()-1).getDistancia() - dados.get(0).getDistancia();
 
                     for(int i=0; i<dados.size()-1; i++){
@@ -82,6 +78,5 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this.getApplicationContext(),getString(R.string.error), Toast.LENGTH_LONG).show();
         }
-
     }
 }

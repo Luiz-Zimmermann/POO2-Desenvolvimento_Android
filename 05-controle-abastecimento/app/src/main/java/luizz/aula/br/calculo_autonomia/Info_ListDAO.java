@@ -47,10 +47,9 @@ public class Info_ListDAO {
             FileReader leitor = new FileReader(refArquivo);
             BufferedReader leitor_Linha = new BufferedReader(leitor);
 
-            String linha=null;
+            String linha = null;
 
             while((linha = leitor_Linha.readLine()) != null){
-
                 String[] parte_Linha = linha.split(";");
                 Info_List_Item item = new Info_List_Item();
                 item.setPosto(Integer.parseInt(parte_Linha[0]));

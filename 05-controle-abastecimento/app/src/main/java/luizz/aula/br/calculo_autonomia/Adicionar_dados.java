@@ -32,7 +32,7 @@ public class Adicionar_dados extends AppCompatActivity {
         adapterSpin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         posto.setAdapter(adapterSpin);
 
-        kmOld = this.getIntent().getDoubleExtra("kmAntigo", 0);
+        kmOld = this.getIntent().getDoubleExtra("kmAntigo", -1);
     }
 
     public  void onclickdado(View v){

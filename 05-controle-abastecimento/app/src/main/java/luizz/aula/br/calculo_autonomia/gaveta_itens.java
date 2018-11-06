@@ -13,7 +13,6 @@ public class gaveta_itens extends RecyclerView.ViewHolder {
 
     private ImageView posto;
 
-
     public gaveta_itens(@NonNull View itemView) {
         super(itemView);
 
@@ -21,7 +20,6 @@ public class gaveta_itens extends RecyclerView.ViewHolder {
         this.tvdata = itemView.findViewById(R.id.date_view);
         this.posto = itemView.findViewById(R.id.image_posto);
         this.tvfuel = itemView.findViewById(R.id.liters_view);
-
     }
 
     public void atualiza_ItemLista(Info_List_Item item){
@@ -38,8 +36,6 @@ public class gaveta_itens extends RecyclerView.ViewHolder {
         }else if(item.getPosto()==3){
             this.posto.setImageResource(R.drawable.texaco);
         }else{
-
         }
-
     }
 }

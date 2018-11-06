@@ -28,7 +28,6 @@ public class list_View extends AppCompatActivity {
 
        rvLista.setAdapter(this.adaptador);
        rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
-
     }
 
     public void onclickadd(View v){
@@ -55,6 +54,5 @@ public class list_View extends AppCompatActivity {
         }else{
             Toast.makeText(this.getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
         }
-
     }
 }

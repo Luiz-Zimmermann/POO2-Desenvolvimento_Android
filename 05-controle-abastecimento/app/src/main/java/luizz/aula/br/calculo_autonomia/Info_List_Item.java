@@ -9,7 +9,6 @@ public class Info_List_Item {
     private String data;
     private double distancia;
 
-
     public int getPosto() {
         return posto;
     }

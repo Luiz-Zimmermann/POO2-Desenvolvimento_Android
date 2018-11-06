@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-//
 public class adapter_item extends RecyclerView.Adapter {
 
     public ArrayList<Info_List_Item> lista;
