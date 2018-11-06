@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Calculo de autonomia</string>
+    <string name="app_name">Calculadora de autonomia</string>
     <string name="kilo">Quilometragem atual:</string>
     <string name="save">Salvar</string>
     <string name="date">Data:</string>
     <string name="posto">Posto:</string>
     <string name="litros">Litros abastecidos:</string>
+    <string name="error">Erro</string>
+    <string name="errorNot">Nada salvo</string>
+    <string name="auto">Autonomia</string>
+    <string name="warning">Informe um valor</string>
+    <string name="warningSave">Erro ao salvar</string>
+    <string name="warningOver">Não pode inserir um valor igual ao anterior</string>
 
     <array name="lista_postos">
         <item>Petrobras</item>

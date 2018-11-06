@@ -1,5 +1,6 @@
 package luizz.aula.br.calculo_autonomia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ public class Adicionar_dados extends AppCompatActivity {
 
     private EditText km, data, fuel;
     private Spinner posto;
+    double kmOld;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class Adicionar_dados extends AppCompatActivity {
         //como vai ser visto o vetor
         adapterSpin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         posto.setAdapter(adapterSpin);
+
+        kmOld = this.getIntent().getDoubleExtra("kmAntigo", 0);
     }
 
     public  void onclickdado(View v){
@@ -36,9 +40,27 @@ public class Adicionar_dados extends AppCompatActivity {
         //Cria um item sem nada
         Info_List_Item item = new Info_List_Item();
 
+
+        if(km.getText().toString().equals("")){
+            this.km.setError(getString(R.string.warning));
+            return;
+        }
+        if(fuel.getText().toString().equals("")){
+            this.fuel.setError(getString(R.string.warning));
+            return;
+        }
+        if(data.getText().toString().equals("")){
+            this.data.setError(getString(R.string.warning));
+            return;
+        }
+        if(Double.parseDouble(km.getText().toString())<=this.kmOld){
+            this.km.setError(getString(R.string.warningOver));
+            return;
+        }
+
         item.setData(data.getText().toString());
-        item.setDistancia(Integer.parseInt(km.getText().toString()));
-        item.setLitros(Integer.parseInt(fuel.getText().toString()));
+        item.setDistancia(Double.parseDouble(km.getText().toString()));
+        item.setLitros(Double.parseDouble(fuel.getText().toString()));
         item.setPosto(posto.getSelectedItemPosition());
 
         //salvando
@@ -48,7 +70,7 @@ public class Adicionar_dados extends AppCompatActivity {
             setResult(1);
             finish();
         }else{
-            Toast.makeText(this.getApplicationContext(), "Erro ao salvar", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getApplicationContext(), getString(R.string.warningSave), Toast.LENGTH_LONG).show();
         }
     }
 }

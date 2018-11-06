@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class list_View extends AppCompatActivity {
 
    private adapter_item adaptador;
    private final int codigo=2409;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +33,27 @@ public class list_View extends AppCompatActivity {
 
     public void onclickadd(View v){
         Intent trocar_act = new Intent(this.getApplicationContext(), Adicionar_dados.class);
+        if(this.adaptador.lista.size()>0){
+            trocar_act.putExtra("kmAntigo", this.adaptador.lista.get(this.adaptador.lista.size()-1).getDistancia());
+        }
         startActivityForResult(trocar_act, codigo);
+    }
+
+    public  void onclickVoltar(View v){
+        setResult(1);
+        finish();
     }
 
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode==codigo) {
             if (resultCode == 1) {
-                this.adaptador.notifyDataSetChanged();
+                  this.adaptador.notifyDataSetChanged();
             }else{
-                Toast.makeText(this.getApplicationContext(), "Erro", Toast.LENGTH_LONG).show();
+                Toast.makeText(this.getApplicationContext(), getString(R.string.errorNot), Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(this.getApplicationContext(), "Erro", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
         }
 
     }

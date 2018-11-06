@@ -5,9 +5,9 @@ import android.os.Bundle;
 public class Info_List_Item {
 
     private int posto;
-    private int litros;
+    private double litros;
     private String data;
-    private int distancia;
+    private double distancia;
 
 
     public int getPosto() {
@@ -18,11 +18,11 @@ public class Info_List_Item {
         this.posto = posto;
     }
 
-    public int getLitros() {
+    public double getLitros() {
         return litros;
     }
 
-    public void setLitros(int litros) {
+    public void setLitros(double litros) {
         this.litros = litros;
     }
 
@@ -34,11 +34,11 @@ public class Info_List_Item {
         this.data = data;
     }
 
-    public int getDistancia() {
+    public double getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(int distancia) {
+    public void setDistancia(double distancia) {
         this.distancia = distancia;
     }
 }
