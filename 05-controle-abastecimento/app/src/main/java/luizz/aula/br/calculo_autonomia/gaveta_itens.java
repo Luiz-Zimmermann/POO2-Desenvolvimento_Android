@@ -1,5 +1,6 @@
 package luizz.aula.br.calculo_autonomia;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,11 +11,20 @@ import android.widget.TextView;
 public class gaveta_itens extends RecyclerView.ViewHolder {
 
     private TextView  tvdata, tvfuel, tvkm;
-
     private ImageView posto;
+
+    private  Info_List_Item itemLook;
 
     public gaveta_itens(@NonNull View itemView) {
         super(itemView);
+
+        itemView.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v){
+                Intent openActiviy = new Intent(v.getContext(), item_detalhado.class);
+                openActiviy.putExtra("registro", gaveta_itens.this.itemLook);
+                ((list_View) v.getContext()).startActivity(openActiviy);
+        }
+    });
 
         this.tvkm = itemView.findViewById(R.id.distance_view);
         this.tvdata = itemView.findViewById(R.id.date_view);
@@ -23,6 +33,9 @@ public class gaveta_itens extends RecyclerView.ViewHolder {
     }
 
     public void atualiza_ItemLista(Info_List_Item item){
+
+        itemLook= item;
+
         this.tvkm.setText("Km: "+item.getDistancia());
         this.tvdata.setText(item.getData());
         this.tvfuel.setText(item.getLitros()+"L");

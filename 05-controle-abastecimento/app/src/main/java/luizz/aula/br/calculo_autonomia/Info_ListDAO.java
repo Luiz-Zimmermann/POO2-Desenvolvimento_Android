@@ -1,6 +1,9 @@
 package luizz.aula.br.calculo_autonomia;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,55 +16,48 @@ import java.util.ArrayList;
 public class Info_ListDAO {
 
     private static ArrayList<Info_List_Item> Cache = new ArrayList<Info_List_Item>();
-    private static final String Nome_Arquivo = "dados1.txt";
+
 
     //salva o dado no arquivo e na cahce
     public static boolean salvar(Context c, Info_List_Item itemSave){
-        //Cache.add(0,itemSave);
+        DbHelper DataBase = new DbHelper(c);
+        SQLiteDatabase db = DataBase.getWritableDatabase();
+
+        ContentValues chave = new ContentValues();
+        chave.put("posto", itemSave.getPosto());
+        chave.put("data", itemSave.getData());
+        chave.put("distancia", itemSave.getDistancia());
+        chave.put("litros", itemSave.getLitros());
+        chave.put("latitude", itemSave.getLatitude());
+        chave.put("longitude", itemSave.getLongitude());
+
+        long id = db.insert("cadastros", null, chave);
+        itemSave.setId(id);
         Cache.add(itemSave);
-
-        String adpt = "";
-        adpt+= itemSave.getPosto()+";";
-        adpt+= itemSave.getDistancia()+";";
-        adpt+= itemSave.getLitros()+";";
-        adpt+= itemSave.getData()+"\n";
-
-        File refArquivo = new File(c.getFilesDir().getPath()+Nome_Arquivo);
-        try {
-            FileWriter escritor = new FileWriter(refArquivo, true);
-            escritor.write(adpt);
-            escritor.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        return true;
     }
     //carrega a cache com a lista de itens
     public static  ArrayList<Info_List_Item> carrega_Lista(Context c){
         Cache = new ArrayList<Info_List_Item>();
 
-        File refArquivo = new File(c.getFilesDir().getPath() + Nome_Arquivo);
+        DbHelper DataBase = new DbHelper(c);
+        SQLiteDatabase db = DataBase.getReadableDatabase();
 
-        try{
-            FileReader leitor = new FileReader(refArquivo);
-            BufferedReader leitor_Linha = new BufferedReader(leitor);
+        String SQLBuscaRegistros = "SELECT posto, data, distancia, litros, latitude, longitude, id FROM cadastros";
+        Cursor ponteiro = db.rawQuery(SQLBuscaRegistros, null);
 
-            String linha = null;
-
-            while((linha = leitor_Linha.readLine()) != null){
-                String[] parte_Linha = linha.split(";");
-                Info_List_Item item = new Info_List_Item();
-                item.setPosto(Integer.parseInt(parte_Linha[0]));
-                item.setDistancia(Double.parseDouble(parte_Linha[1]));
-                item.setLitros(Double.parseDouble(parte_Linha[2]));
-                item.setData(parte_Linha[3]);
-                Cache.add(item);
-                //Cache.add(0, item);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (ponteiro.moveToNext()){
+            Info_List_Item item = new Info_List_Item();
+            item.setPosto(ponteiro.getInt(0));
+            item.setData(ponteiro.getString(1));
+            item.setDistancia(ponteiro.getDouble(2));
+            item.setLitros(ponteiro.getDouble(3));
+            item.setLatitude(ponteiro.getDouble(4));
+            item.setLongitude(ponteiro.getDouble(5));
+            item.setId(ponteiro.getLong(6));
+            Cache.add(item);
         }
+
         return Cache;
     }
 

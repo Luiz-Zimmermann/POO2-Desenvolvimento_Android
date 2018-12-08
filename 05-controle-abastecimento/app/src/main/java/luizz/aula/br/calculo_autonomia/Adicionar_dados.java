@@ -1,6 +1,11 @@
 package luizz.aula.br.calculo_autonomia;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +19,10 @@ public class Adicionar_dados extends AppCompatActivity {
 
     private EditText km, data, fuel;
     private Spinner posto;
-    double kmOld;
+    private double kmOld;
+    private boolean permissaofinal;
+    private Location location;
+    private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +41,9 @@ public class Adicionar_dados extends AppCompatActivity {
         posto.setAdapter(adapterSpin);
 
         kmOld = this.getIntent().getDoubleExtra("kmAntigo", -1);
+        permissaofinal = this.getIntent().getBooleanExtra("permissao", false);
     }
+
 
     public  void onclickdado(View v){
 
@@ -58,6 +68,13 @@ public class Adicionar_dados extends AppCompatActivity {
             return;
         }
 
+        if(permissaofinal==true){
+            getLocation(item);
+        }else{
+            item.setLatitude(0);
+            item.setLongitude(0);
+        }
+
         item.setData(data.getText().toString());
         item.setDistancia(Double.parseDouble(km.getText().toString()));
         item.setLitros(Double.parseDouble(fuel.getText().toString()));
@@ -72,5 +89,30 @@ public class Adicionar_dados extends AppCompatActivity {
         }else{
             Toast.makeText(this.getApplicationContext(), getString(R.string.warningSave), Toast.LENGTH_LONG).show();
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    public void getLocation(final Info_List_Item item){
+        try{
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            LocationListener locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+                    item.setLatitude(location.getLatitude());
+                    item.setLongitude(location.getLongitude());
+                }
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) { }
+                @Override
+                public void onProviderEnabled(String provider) { }
+                @Override
+                public void onProviderDisabled(String provider) {}
+            };
+            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
+        }catch (SecurityException e){
+           Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 }

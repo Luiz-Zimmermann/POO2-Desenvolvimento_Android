@@ -14,12 +14,15 @@ public class list_View extends AppCompatActivity {
 
    private adapter_item adaptador;
    private final int codigo=2409;
+   private boolean permissao;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list__view);
+
+        this.permissao = this.getIntent().getBooleanExtra("permissao", false);
 
         RecyclerView rvLista = findViewById(R.id.recicleList);
 
@@ -35,6 +38,7 @@ public class list_View extends AppCompatActivity {
         if(this.adaptador.lista.size()>0){
             trocar_act.putExtra("kmAntigo", this.adaptador.lista.get(this.adaptador.lista.size()-1).getDistancia());
         }
+        trocar_act.putExtra("permissao", permissao);
         startActivityForResult(trocar_act, codigo);
     }
 

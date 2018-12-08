@@ -1,0 +1,56 @@
+package luizz.aula.br.calculo_autonomia;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class item_detalhado extends AppCompatActivity {
+
+    private Info_List_Item objeto;
+    private TextView nome_posto, kiloInd, litersInd, kiloView,litersView, dataView, latd,longt ;
+    private ImageView logo;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item_detalhado);
+
+        logo = findViewById(R.id.posto_imagem);
+        nome_posto = findViewById(R.id.textnome);
+        kiloInd = findViewById(R.id.textquilo);
+        kiloView = findViewById(R.id.textviewquilo);
+        litersInd = findViewById(R.id.textlitros);
+        litersView = findViewById(R.id.textviewlitros);
+        dataView = findViewById(R.id.textdata);
+
+        latd = findViewById(R.id.latitude);
+        longt = findViewById(R.id.longitude);
+
+        this.objeto = (Info_List_Item) getIntent().getSerializableExtra("registro");
+
+        if(objeto.getPosto()==0){
+            this.logo.setImageResource(R.drawable.petro);
+            nome_posto.setText(getString(R.string.petro));
+        }else if(objeto.getPosto()==1){
+            this.logo.setImageResource(R.drawable.ipi);
+            nome_posto.setText(getString(R.string.ipiranga));
+        }else if(objeto.getPosto()==2){
+            this.logo.setImageResource(R.drawable.shell);
+            nome_posto.setText(getString(R.string.shell));
+        }else if(objeto.getPosto()==3){
+            this.logo.setImageResource(R.drawable.texaco);
+            nome_posto.setText(getString(R.string.texaco));
+        }
+
+        dataView.setText(objeto.getData());
+        kiloInd.setText(getString(R.string.kiloEspc));
+        litersInd.setText(getString(R.string.litrosEspc));
+        kiloView.setText(""+objeto.getDistancia());
+        litersView.setText(""+objeto.getLitros());
+
+        latd.setText(""+objeto.getLatitude());
+        longt.setText(""+objeto.getLongitude());
+
+    }
+}

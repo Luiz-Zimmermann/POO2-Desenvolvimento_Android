@@ -1,8 +1,11 @@
 package luizz.aula.br.calculo_autonomia;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,12 +23,25 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton add;
     private TextView autonomia;
 
+    private boolean permissao;
     int codigo = 2409;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //verifica se ja tem permissao de gps
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //pede permissao ao usuario
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+        else{
+            permissao = true;
+        }
 
         add = findViewById(R.id.add);
         autonomia = findViewById(R.id.tvKilo);
@@ -48,9 +64,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override//verifica se o usuario deu acesso ou nao ao utilizar o gps
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    permissao = true;
+                } else {
+                    Toast.makeText(this, "Não vai funcionar!!!", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
+
     public void onclick(View v){
 
        Intent trocar_act = new Intent(this.getApplicationContext(), list_View.class);
+       trocar_act.putExtra("permissao", permissao);
        startActivityForResult(trocar_act, codigo);
     }
 

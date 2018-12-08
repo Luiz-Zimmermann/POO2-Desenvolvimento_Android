@@ -2,12 +2,17 @@ package luizz.aula.br.calculo_autonomia;
 
 import android.os.Bundle;
 
-public class Info_List_Item {
+import java.io.Serializable;
 
+public class Info_List_Item implements Serializable {
+
+    private long id;
     private int posto;
     private double litros;
     private String data;
     private double distancia;
+    private double latitude;
+    private  double longitude;
 
     public int getPosto() {
         return posto;
@@ -39,5 +44,30 @@ public class Info_List_Item {
 
     public void setDistancia(double distancia) {
         this.distancia = distancia;
+
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
