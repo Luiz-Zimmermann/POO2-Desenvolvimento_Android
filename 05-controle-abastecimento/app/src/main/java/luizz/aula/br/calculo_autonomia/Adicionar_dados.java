@@ -1,11 +1,15 @@
 package luizz.aula.br.calculo_autonomia;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,34 +49,39 @@ public class Adicionar_dados extends AppCompatActivity {
     }
 
 
-    public  void onclickdado(View v){
+    public void onclickdado(View v) {
 
         //Cria um item sem nada
         Info_List_Item item = new Info_List_Item();
 
 
-        if(km.getText().toString().equals("")){
+        if (km.getText().toString().equals("")) {
             this.km.setError(getString(R.string.warning));
             return;
         }
-        if(fuel.getText().toString().equals("")){
+        if (fuel.getText().toString().equals("")) {
             this.fuel.setError(getString(R.string.warning));
             return;
         }
-        if(data.getText().toString().equals("")){
+        if (data.getText().toString().equals("")) {
             this.data.setError(getString(R.string.warning));
             return;
         }
-        if(Double.parseDouble(km.getText().toString())<=this.kmOld){
+        if (Double.parseDouble(km.getText().toString()) <= this.kmOld) {
             this.km.setError(getString(R.string.warningOver));
             return;
         }
 
-        if(permissaofinal==true){
-            getLocation(item);
-        }else{
-            item.setLatitude(0);
-            item.setLongitude(0);
+        if (permissaofinal == true) {
+            GPSprovider g = new GPSprovider(getApplicationContext());
+            Location l = g.getLocation();
+            if (l != null){
+                item.setLatitude(l.getLatitude());
+                item.setLongitude(l.getLongitude());
+            }
+        } else {
+            item.setLatitude(010);
+            item.setLongitude(010);
         }
 
         item.setData(data.getText().toString());
@@ -83,36 +92,42 @@ public class Adicionar_dados extends AppCompatActivity {
         //salvando
         boolean sucesso = Info_ListDAO.salvar(this.getApplicationContext(), item);
 
-        if(sucesso){
+        if (sucesso) {
             setResult(1);
             finish();
-        }else{
+        } else {
             Toast.makeText(this.getApplicationContext(), getString(R.string.warningSave), Toast.LENGTH_LONG).show();
         }
     }
 
-    @SuppressLint("MissingPermission")
-    public void getLocation(final Info_List_Item item){
-        try{
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            LocationListener locationListener = new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
-                    item.setLatitude(location.getLatitude());
-                    item.setLongitude(location.getLongitude());
-                }
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) { }
-                @Override
-                public void onProviderEnabled(String provider) { }
-                @Override
-                public void onProviderDisabled(String provider) {}
-            };
-            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
-        }catch (SecurityException e){
-           Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
 
-    }
+
+
+//    public void getLocation(final Info_List_Item item) {
+//
+//
+//        location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+//        try{
+//            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//            LocationListener locationListener = new LocationListener() {
+//                @Override
+//                public void onLocationChanged(Location location) {
+//
+//                    item.setLatitude(location.getLatitude());
+//                    item.setLongitude(location.getLongitude());
+//                    locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+//                }
+//                @Override
+//                public void onStatusChanged(String provider, int status, Bundle extras) { }
+//                @Override
+//                public void onProviderEnabled(String provider) { }
+//                @Override
+//                public void onProviderDisabled(String provider) {}
+//            };
+//            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
+//        }catch (SecurityException e){
+//           Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//        }
+//
+//    }
 }
