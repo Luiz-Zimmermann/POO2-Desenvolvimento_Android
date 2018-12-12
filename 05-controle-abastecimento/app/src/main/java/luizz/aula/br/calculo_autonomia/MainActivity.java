@@ -1,15 +1,12 @@
 package luizz.aula.br.calculo_autonomia;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean permissao;
     int codigo = 2409;
+
+    //Não sei o porque, mas o programa não funciona em APIs acima de 27 pelo menos em alguns devices emulados no Android Studio
+    //Foi testado em 4 dispositivos reais diferentes e pelo menos nesses casos funcionou
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

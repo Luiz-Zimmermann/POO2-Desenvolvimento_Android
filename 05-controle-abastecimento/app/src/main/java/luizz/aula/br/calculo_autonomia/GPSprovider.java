@@ -9,7 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
-
+//Classe feita por mim, alguns alunos copiaram mas pelo menos procuraram saber como funciona
 public class GPSprovider implements LocationListener {
 
     Context context;
@@ -36,7 +36,9 @@ public class GPSprovider implements LocationListener {
         return null;
 
     }
+    //outras funções que não vou utilizar agora
 
+    //
     @Override
     public void onLocationChanged(Location location) {
 
@@ -46,12 +48,12 @@ public class GPSprovider implements LocationListener {
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
     }
-
+    //GPS ligado
     @Override
     public void onProviderEnabled(String provider) {
 
     }
-
+    //GPS desligado
     @Override
     public void onProviderDisabled(String provider) {
 

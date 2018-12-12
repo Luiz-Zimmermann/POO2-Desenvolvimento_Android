@@ -5,11 +5,19 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class item_detalhado extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class item_detalhado extends AppCompatActivity implements OnMapReadyCallback {
 
     private Info_List_Item objeto;
     private TextView nome_posto, kiloInd, litersInd, kiloView,litersView, dataView, latd,longt ;
     private ImageView logo;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,35 @@ public class item_detalhado extends AppCompatActivity {
 
         latd.setText(""+objeto.getLatitude());
         longt.setText(""+objeto.getLongitude());
+
+        iniciaMapa();
+
+    }
+
+    public void iniciaMapa(){
+        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(item_detalhado.this);
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.mMap = googleMap;
+
+        String posto = "";
+        if(objeto.getPosto()==0){
+            posto = getString(R.string.petro);
+        }else if(objeto.getPosto()==1){
+            posto = getString(R.string.ipiranga);
+        }else if(objeto.getPosto()==2){
+            posto = getString(R.string.shell);
+        }else if(objeto.getPosto()==3){
+            posto = getString(R.string.texaco);
+        }
+
+        LatLng localizacao = new LatLng(this.objeto.getLatitude(), this.objeto.getLongitude());
+        this.mMap.addMarker(new MarkerOptions().position(localizacao).title(posto).snippet(objeto.getData()));
+        this.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localizacao, 15f));
 
     }
 }
